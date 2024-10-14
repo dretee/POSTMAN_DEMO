@@ -1,0 +1,95 @@
+[33mcommit dcd7afe8ac896d05db77fcdf0a5ce932ed84b630[m[33m ([m[1;36mHEAD -> [m[1;32mFeatures/New-Collections[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:38:28 2024 +0100
+
+    Delete .github/workflows/Newman-run.yml
+
+[33mcommit f0286012a05fb538c3805d066fe3ba7b6cbf2fbc[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:21:46 2024 +0100
+
+    Update Newman-run.yml
+
+[33mcommit 032ac8b3a72da1c9b2e029fe2f8ede14cf89601e[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:19:16 2024 +0100
+
+    Update Newman-run.yml
+
+[33mcommit 6b008d09273b24bc47b5d71357be31c9a5357be5[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:10:25 2024 +0100
+
+    Update Newman-run.yml
+
+[33mcommit 94b73c950dcd18b132bf1e39e240c24148b6b217[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:05:48 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit 5bc693cedee79371dcb86e22766dc46c8ddd130f[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:04:54 2024 +0100
+
+    Update Newman-run.yml
+
+[33mcommit 94de9852d704e15d73d1ac461718efad87548ea1[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:03:54 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit a86ae332ec8373645bfd8bc5ac81106147d75e1c[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:02:31 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit cd3bd041380ba40019a4ccd1016da0116938c4ab[m
+Author: Anthony <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 16:00:29 2024 +0100
+
+    Newman runner added to run the test
+
+[33mcommit fa0c8901adec97be057ad9166d0e9da082113e8c[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:54:55 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit d95b79b0afb588f8101a551e61da13d69a0f84a4[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:50:56 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit 32128d6ccfedac57647ec50393c6b8cc447f8910[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:47:49 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit 95a7474932a3d8a7b90b639f10b8cca4e11e4808[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:45:05 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit d02f4206dfcfee0d371faf676b830da11edd5170[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:42:03 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit 6395cb3f3dd9bdba3ae57725869e4f8ad3debf00[m
+Author: ANTHONY UYAH <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:35:23 2024 +0100
+
+    Update postman-run.yml
+
+[33mcommit bfbe873d51c9f68d564d85b63264e11e9e30ffd4[m
+Author: Anthony <uyahanthony008@gmail.com>
+Date:   Mon Oct 14 15:25:25 2024 +0100
+
+    First commit
