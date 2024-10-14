@@ -1,28 +1,65 @@
-name: Automated API tests using Newman
+name: Automated API tests using Postman CLI
 
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   automated-api-tests:
     runs-on: windows-latest
+
     steps:
       # Step 1: Checkout the repository
       - uses: actions/checkout@v4
 
-      # Step 2: Install Newman via npm
-      - name: Install Newman
-        run: npm install -g newman
-
-      # Step 3: Run API tests using Newman
-      - name: Run API tests
+      # Step 2: Install Postman CLI
+      - name: Install Postman CLI
         run: |
-          newman run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" \
-          --reporters cli,json
-          --reporter-json-export "postman_report.json"
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
 
-      # Step 4: Upload the report as an artifact
-      - name: Upload Newman Test Report
+      # Step 3: Authenticate Postman CLI using an API key
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+      # Step 4: Run Postman Collection and Export Report
+      - name: Run API Tests
+        run: |
+          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" --environment "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" --export "postman_report.json" --export-test "postman_test_results.json" --export-environment "postman_env.json"
+
+      # Step 5: Upload JSON report and environment as artifacts
+      - name: Upload Postman Test Reports
         uses: actions/upload-artifact@v3
         with:
           name: postman-test-report
           path: postman_report.json
+
+      - name: Upload Postman Test Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: postman-test-results
+          path: postman_test_results.json
+
+      - name: Upload Postman Environment Data
+        uses: actions/upload-artifact@v3
+        with:
+          name: postman-environment-data
+          path: postman_env.json
+
+      # Step 6: Slack Notification on Test Failure
+      - name: Slack Notification on Failure
+        if: failure()  # Only notify if tests fail
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status: failure
+          message: "Postman API Tests Failed! Please check the reports."
+
+      # Step 7: Success Logging
+      - name: Log success message
+        if: success()
+        run: echo "All Postman tests passed successfully!"
