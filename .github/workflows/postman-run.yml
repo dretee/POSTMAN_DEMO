@@ -22,7 +22,7 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81"
-          --reporters cli,json \
+          --reporters cli,json
           --reporter-json-export "postman_report.json"
 
       # Step 5: Upload the report as an artifact
