@@ -28,7 +28,7 @@ jobs:
       # Step 4: Run Postman Collection and Export Report
       - name: Run API Tests
         run: |
-          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" --environment "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" --export "postman_report.json" --export-test "postman_test_results.json" --export-environment "postman_env.json"
+          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" --export "postman_report.json" --export-test "postman_test_results.json" --export-environment "postman_env.json"
 
       # Step 5: Upload JSON report and environment as artifacts
       - name: Upload Postman Test Reports
@@ -48,16 +48,6 @@ jobs:
         with:
           name: postman-environment-data
           path: postman_env.json
-
-      # Step 6: Slack Notification on Test Failure
-      - name: Slack Notification on Failure
-        if: failure()  # Only notify if tests fail
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          status: failure
-          message: "Postman API Tests Failed! Please check the reports."
 
       # Step 7: Success Logging
       - name: Log success message
