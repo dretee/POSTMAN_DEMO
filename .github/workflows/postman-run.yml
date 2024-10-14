@@ -4,30 +4,14 @@ on: push
 
 jobs:
   automated-api-tests:
-    runs-on: ubuntu-latest  # Use Ubuntu runner
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout code from repository
       - uses: actions/checkout@v4
-
-      # Step 2: Install Postman CLI
       - name: Install Postman CLI
         run: |
-          curl -L https://dl-cli.pstmn.io/install/linux64.sh | sh
-
-      # Step 3: Login to Postman CLI
+          powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-
-      # Step 4: Run API tests (Postman CLI syntax)
       - name: Run API tests
         run: |
-          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" \
-          --environment "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" \
-          --export "postman_report.json"
-
-      # Step 5: Upload the report as an artifact
-      - name: Upload Postman Test Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: postman-test-report
-          path: postman_report.json
+          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81"
