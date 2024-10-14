@@ -6,12 +6,29 @@ jobs:
   automated-api-tests:
     runs-on: windows-latest
     steps:
+      # Step 1: Checkout code from repository
       - uses: actions/checkout@v4
+      
+      # Step 2: Install Postman CLI
       - name: Install Postman CLI
         run: |
           powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://dl-cli.pstmn.io/install/win64.ps1'))"
+      
+      # Step 3: Login to Postman CLI
       - name: Login to Postman CLI
         run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+
+      # Step 4: Run API tests and generate a report
       - name: Run API tests
         run: |
-          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81"     
+          postman collection run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" \
+          -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" \
+          --reporters cli,json \
+          --reporter-json-export "postman_report.json"
+
+      # Step 5: Upload the report as an artifact
+      - name: Upload Postman Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-test-report
+          path: postman_report.json
