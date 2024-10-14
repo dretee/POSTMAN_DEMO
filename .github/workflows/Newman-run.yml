@@ -1,0 +1,29 @@
+name: Automated API tests using Newman
+
+on: push
+
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout code from repository
+      - uses: actions/checkout@v4
+
+      # Step 2: Install Newman
+      - name: Install Newman
+        run: npm install -g newman
+
+      # Step 3: Run API tests using Newman
+      - name: Run API tests
+        run: |
+          newman run "27529247-f1439a65-f2ff-4cf0-ad66-2f9c66c63a0f" \
+          -e "27529247-af5a2e3b-b7b9-4e67-807c-882f5b1fba81" \
+          --reporters cli,json \
+          --reporter-json-export "postman_report.json"
+
+      # Step 4: Upload the report as an artifact
+      - name: Upload Newman Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: postman-test-report
+          path: postman_report.json
