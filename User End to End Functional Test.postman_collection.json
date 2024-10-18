@@ -265,7 +265,6 @@
 									"pm.collectionVariables.unset(\"Fristname\");\r",
 									"pm.collectionVariables.unset(\"Lastname\")\r",
 									"pm.collectionVariables.unset(\"User_id\")\r",
-									"pm.collectionVariables.unset(\"Useremail\")\r",
 									"pm.collectionVariables.unset(\"Current_first_name\")\r",
 									"pm.environment.unset(\"access_token\")\r",
 									""
@@ -438,7 +437,8 @@
 									"pm.test(\"Verifying the response is withing the time limit\", () => {\r",
 									"pm.expect(pm.response.responseTime).is.lessThan(1000);\r",
 									"});\r",
-									""
+									"\r",
+									"pm.collectionVariables.unset(\"Useremail\");"
 								],
 								"type": "text/javascript",
 								"packages": {}
