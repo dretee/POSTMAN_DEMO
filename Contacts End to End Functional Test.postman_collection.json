@@ -406,7 +406,7 @@
 			"name": "Endpoints without authorization",
 			"item": [
 				{
-					"name": "Create contacts Copy",
+					"name": "Create contacts",
 					"event": [
 						{
 							"listen": "test",
@@ -519,7 +519,7 @@
 					"response": []
 				},
 				{
-					"name": "Get all contacts list Copy",
+					"name": "Get all contacts list",
 					"event": [
 						{
 							"listen": "test",
@@ -561,6 +561,114 @@
 							]
 						},
 						"description": "Generated from cURL: curl --location 'https://thinking-tester-contact-list.herokuapp.com/contacts' \\\r\n--header 'Authorization: Bearer {{token}}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Get contacts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Test to verify the status code of the response is 401 (unauthrized)\r",
+									"pm.test(\"Verifying that the status code is 401\", () => {\r",
+									"    pm.expect(pm.response.code).eql(401);\r",
+									"});\r",
+									"\r",
+									"// Test to verify that the response time is within the acceptable limit (less than 1000 ms)\r",
+									"pm.test(\"Verifying the response is within the time limit\", () => {\r",
+									"    pm.expect(pm.response.responseTime).is.lessThan(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/contacts/",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"contacts",
+								""
+							]
+						},
+						"description": "Generated from cURL: curl --location 'https://thinking-tester-contact-list.herokuapp.com/contacts/' \\\r\n--header 'Authorization: Bearer {{token}}'"
+					},
+					"response": []
+				},
+				{
+					"name": "Update contacts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Test to verify the status code of the response is 401 (unauthrized)\r",
+									"pm.test(\"Verifying that the status code is 401\", () => {\r",
+									"    pm.expect(pm.response.code).eql(401);\r",
+									"});\r",
+									"\r",
+									"// Test to verify that the response time is within the acceptable limit (less than 1000 ms)\r",
+									"pm.test(\"Verifying the response is within the time limit\", () => {\r",
+									"    pm.expect(pm.response.responseTime).is.lessThan(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Anna\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_url}}/contacts",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"contacts"
+							]
+						},
+						"description": "Generated from cURL: curl --location --request PATCH 'https://thinking-tester-contact-list.herokuapp.com/contacts/' \\\r\n--header 'Authorization: Bearer {{token}}' \\\r\n--data '{\r\n    \"firstName\": \"Anna\"\r\n}'"
 					},
 					"response": []
 				}
